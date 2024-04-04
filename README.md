@@ -11,6 +11,62 @@
 7.	To reach a variable, enter the variable to be searched and symbol table has been checked for corresponding variable, the variable along with its address is displayed as result.
 8.	Stop the program. 
 # PROGRAM
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+    char expression[20];
+    int i = 0, x = 0, n, flag = 0;
+    void *add[5];
+    char d[15], c, srch;
+
+    printf("Enter the Expression: ");
+    scanf("%s", expression);
+
+    n = strlen(expression);
+
+    printf("Given Expression: %s\n", expression);
+
+    printf("Symbol Table\n");
+    printf("Symbol\taddr\ttype\n");
+    while (i < n)
+    {
+        c = expression[i];
+        if (isalpha(c))
+        {
+            add[x] = &expression[i];
+            d[x] = c;
+            printf("%c\t%p\tidentifier\n", c, (void *)&expression[i]);
+            x++;
+        }
+        i++;
+    }
+
+    printf("\nThe symbol to be searched: ");
+    scanf(" %c", &srch);
+    for (i = 0; i < x; i++)
+    {
+        if (srch == d[i])
+        {
+            printf("\nSymbol Found");
+            printf("\n%c\t@address %p\n", srch, (void *)add[i]);
+            flag = 1;
+            break;
+        }
+    }
+
+    if (flag == 0)
+        printf("\nSymbol Not Found");
+
+    return 0;
+}
+
+```
 # OUTPUT
+![image](https://github.com/Shree-Ram-R/IMPLEMENTATION-OF-SYMBOL-TABLE-/assets/121288490/8a5aa680-bcff-4df2-994b-8af4680afd8e)
+
 # RESULT
 ### The program to implement a symbol table is executed and the output is verified.
